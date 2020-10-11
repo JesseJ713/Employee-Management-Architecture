@@ -47,7 +47,7 @@ function initialInquiry() {
           updateEmployee();
 
         case updateOptions[4]:
-          connection.end();
+          server.end();
           break;
       }
     });
@@ -57,7 +57,7 @@ initialInquiry();
 
 function departmentView() {
   let querySelector = "SELECT * FROM department";
-  connection.query(querySelector, function (err, data) {
+  server.query(querySelector, function (err, data) {
     if (err) throw err;
 
     console.table(data);
@@ -70,7 +70,7 @@ function employeeView() {
     "SELECT first_name, last_name, title, salary FROM employee ";
   querySelector += "LEFT JOIN role ";
   querySelector += "ON employee.role_id = role.id";
-  connection.query(querySelector, function (err, data) {
+  server.query(querySelector, function (err, data) {
     if (err) throw err;
 
     console.table(data);
@@ -80,7 +80,7 @@ function employeeView() {
 
 function roleView() {
   let querySelector = "SELECT * FROM role";
-  connection.query(querySelector, function (err, data) {
+  server.query(querySelector, function (err, data) {
     if (err) throw err;
 
     console.table(data);
