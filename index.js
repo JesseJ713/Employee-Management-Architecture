@@ -30,7 +30,7 @@ function initialInquiry() {
       choices: viewOptions,
     })
     .then(function (answer) {
-      switch (answer.action) {
+      switch (answer.inquiry) {
         case viewOptions[0]:
           departmentView();
           break;
@@ -54,3 +54,13 @@ function initialInquiry() {
 }
 
 initialInquiry();
+
+function departmentView() {
+  let querySelector = "SELECT * FROM department";
+  connection.query(querySelector, function (err, data) {
+    if (err) throw err;
+
+    console.table(data);
+    initialInquiry();
+  });
+}
