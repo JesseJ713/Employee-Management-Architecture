@@ -1,0 +1,25 @@
+{
+  "name": "employee-management-architecture",
+  "version": "1.0.0",
+  "description": "Viewing and managing the departments, roles, and employees in a company using node, inquirer, and MySQL.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JesseJ713/Employee-Management-Architecture.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JesseJ713/Employee-Management-Architecture/issues"
+  },
+  "homepage": "https://github.com/JesseJ713/Employee-Management-Architecture#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
