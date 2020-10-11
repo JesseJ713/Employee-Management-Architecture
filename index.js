@@ -66,10 +66,20 @@ function departmentView() {
 }
 
 function employeeView() {
-  var querySelector =
+  let querySelector =
     "SELECT first_name, last_name, title, salary FROM employee ";
   querySelector += "LEFT JOIN role ";
   querySelector += "ON employee.role_id = role.id";
+  connection.query(querySelector, function (err, data) {
+    if (err) throw err;
+
+    console.table(data);
+    initialInquiry();
+  });
+}
+
+function roleView() {
+  let querySelector = "SELECT * FROM role";
   connection.query(querySelector, function (err, data) {
     if (err) throw err;
 
