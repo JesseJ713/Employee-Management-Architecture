@@ -64,3 +64,16 @@ function departmentView() {
     initialInquiry();
   });
 }
+
+function employeeView() {
+  var querySelector =
+    "SELECT first_name, last_name, title, salary FROM employee ";
+  querySelector += "LEFT JOIN role ";
+  querySelector += "ON employee.role_id = role.id";
+  connection.query(querySelector, function (err, data) {
+    if (err) throw err;
+
+    console.table(data);
+    initialInquiry();
+  });
+}
