@@ -57,10 +57,10 @@ initialInquiry();
 
 function departmentView() {
   let querySelector = "SELECT * FROM department";
-  server.query(querySelector, function (err, data) {
+  server.query(querySelector, function (err, res) {
     if (err) throw err;
 
-    console.table(data);
+    console.table(res);
     initialInquiry();
   });
 }
@@ -70,20 +70,52 @@ function employeeView() {
     "SELECT first_name, last_name, title, salary FROM employee ";
   querySelector += "LEFT JOIN role ";
   querySelector += "ON employee.role_id = role.id";
-  server.query(querySelector, function (err, data) {
+  server.query(querySelector, function (err, res) {
     if (err) throw err;
 
-    console.table(data);
+    console.table(res);
     initialInquiry();
   });
 }
 
 function roleView() {
   let querySelector = "SELECT * FROM role";
-  server.query(querySelector, function (err, data) {
+  server.query(querySelector, function (err, res) {
     if (err) throw err;
 
-    console.table(data);
+    console.table(res);
     initialInquiry();
   });
 }
+
+// function updateEmployee() {
+//   let querySelector = "SELECT first_name, last_name, role_id FROM employee";
+//   server.query(querySelector, function (err, res) {
+//     if (err) throw err;
+
+//     inquirer
+//       .prompt([
+//         {
+//           type: "list",
+//           name: "employeeName",
+//           message: "While employee role would you like to update?",
+//           choices: employeeOptions,
+//         },
+//         {
+//           type: "input",
+//           name: "role",
+//           message: "What is the new role id?",
+//         },
+//       ])
+//       .then(function (res) {
+//         server.query(
+//           "UPDATE employee SET role = ${res.role} WHERE id = ${res.employeeName}"
+//         ),
+//           function (err, res) {
+//             if (err) throw err;
+//             console.log(res);
+//             initialInquiry();
+//           };
+//       });
+//   });
+// }
