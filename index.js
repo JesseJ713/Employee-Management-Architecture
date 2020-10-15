@@ -88,34 +88,32 @@ function roleView() {
   });
 }
 
-// function updateEmployee() {
-//   let querySelector = "SELECT first_name, last_name, role_id FROM employee";
-//   server.query(querySelector, function (err, res) {
-//     if (err) throw err;
+function updateEmployee() {
+  let querySelector = "SELECT first_name, last_name, role_id FROM employee";
+  server.query(querySelector, function (err, res) {
+    if (err) throw err;
 
-//     inquirer
-//       .prompt([
-//         {
-//           type: "list",
-//           name: "employeeName",
-//           message: "While employee role would you like to update?",
-//           choices: employeeOptions,
-//         },
-//         {
-//           type: "input",
-//           name: "role",
-//           message: "What is the new role id?",
-//         },
-//       ])
-//       .then(function (res) {
-//         server.query(
-//           "UPDATE employee SET role = ${res.role} WHERE id = ${res.employeeName}"
-//         ),
-//           function (err, res) {
-//             if (err) throw err;
-//             console.log(res);
-//             initialInquiry();
-//           };
-//       });
-//   });
-// }
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          name: "employeeName",
+          message: "Which employee role would you like to update?",
+          choices: employeeOptions,
+        },
+        {
+          type: "input",
+          name: "role",
+          message: "What is the new role id?",
+        },
+      ])
+      .then(function (res) {
+        let query = "UPDATE employee SET role = ? WHERE id = ?";
+        server.query(query, [res.role, res.employeeName], function (err, res) {
+          if (err) throw err;
+          console.log(res);
+          initialInquiry();
+        });
+      });
+  });
+}
